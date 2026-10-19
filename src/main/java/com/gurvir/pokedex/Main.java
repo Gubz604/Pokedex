@@ -3,21 +3,43 @@ package com.gurvir.pokedex;
 import com.gurvir.pokedex.model.Pokemon;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 
     @Override 
     public void start(Stage stage) {
         // Construct and display interface
-        Pokemon pokemon = new Pokemon(1, "Bulbasaur");
-        String description = "#" + pokemon.getId() + " " + pokemon.getName();
+        Label detailLabel = new Label("Select a Pokemon");
 
-        Label greeting = new Label(description);
-        StackPane root = new StackPane(greeting);
+        ObservableList<Pokemon> pokemon = FXCollections.observableArrayList(
+            new Pokemon(1, "Bulbasaur"),
+            new Pokemon(4, "Charmander"),
+            new Pokemon(7, "Squirtle")
+        );
+        ListView<Pokemon> pokemonList = new ListView<>(pokemon);
+        pokemonList.getSelectionModel()
+            .selectedItemProperty()
+            .addListener((observable, oldPokemon, newPokemon) -> {
+                if (newPokemon == null) {
+                    System.out.println("Selection cleared: null branch reached");
+                    detailLabel.setText("Select a Pokemon");
+                } else {
+                    detailLabel.setText("#" + newPokemon.getId() + " " + newPokemon.getName());
+                }
+            });
+
+        pokemonList.setPrefWidth(220);
+
+        BorderPane root = new BorderPane();
+        root.setLeft(pokemonList);
+        root.setCenter(detailLabel);
 
 
         Scene scene = new Scene(root, 800, 600);
