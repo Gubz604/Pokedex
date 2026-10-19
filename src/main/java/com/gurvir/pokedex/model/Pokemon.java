@@ -5,6 +5,12 @@ public class Pokemon {
     private final String name;
 
     public Pokemon(final int id, final String name) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Pokemon ID must be greater than zero");
+        }
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name must exist and not be blank or empty");
+        }
         this.id = id;
         this.name = name;
     }
