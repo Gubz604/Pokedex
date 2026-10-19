@@ -1,5 +1,7 @@
 package com.gurvir.pokedex;
 
+import com.gurvir.pokedex.data.InMemoryPokemonRepository;
+import com.gurvir.pokedex.data.PokemonRepository;
 import com.gurvir.pokedex.model.Pokemon;
 import com.gurvir.pokedex.ui.PokedexView;
 
@@ -13,11 +15,8 @@ public class Main extends Application {
 
     @Override 
     public void start(Stage stage) {
-        ObservableList<Pokemon> pokemon = FXCollections.observableArrayList(
-            new Pokemon(1, "Bulbasaur"),
-            new Pokemon(4, "Charmander"),
-            new Pokemon(7, "Squirtle")
-        );
+        PokemonRepository repository = new InMemoryPokemonRepository();
+        ObservableList<Pokemon> pokemon = FXCollections.observableArrayList(repository.findAll());
 
         PokedexView view = new PokedexView(pokemon);
 
