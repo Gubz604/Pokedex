@@ -16,5 +16,5 @@ mvn compile
 ## Run
 
 ```powershell
-java -cp target/classes com.gurvir.pokedex.Main
+mvn javafx:run
 ```

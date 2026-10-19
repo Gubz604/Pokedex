@@ -20,6 +20,23 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.16.0</version>
             </plugin>
+
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.gurvir.pokedex.Main</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.12</version>
+        </dependency>
+    </dependencies>
 </project>
