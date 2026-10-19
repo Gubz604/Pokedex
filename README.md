@@ -18,3 +18,9 @@ mvn compile
 ```powershell
 mvn javafx:run
 ```
+
+## Test
+
+```powershell
+mvn test
+```
