@@ -1,5 +1,7 @@
 package com.gurvir.pokedex;
 
+import com.gurvir.pokedex.model.Pokemon;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -11,7 +13,10 @@ public class Main extends Application {
     @Override 
     public void start(Stage stage) {
         // Construct and display interface
-        Label greeting = new Label("My Pokedex");
+        Pokemon pokemon = new Pokemon(1, "Bulbasaur");
+        String description = "#" + pokemon.getId() + " " + pokemon.getName();
+
+        Label greeting = new Label(description);
         StackPane root = new StackPane(greeting);
 
 
