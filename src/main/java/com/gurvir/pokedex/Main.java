@@ -11,10 +11,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
     @Override 
-    public void start(Stage stage) {
+    public void start(Stage stage) 
+    throws IOException, InterruptedException {
         PokemonRepository repository = new InMemoryPokemonRepository();
         ObservableList<Pokemon> pokemon = FXCollections.observableArrayList(repository.findAll());
 
