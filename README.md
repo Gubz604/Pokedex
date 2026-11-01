@@ -1,6 +1,14 @@
 # Java Pokedex
 
-A desktop Pokedex project for learning Java and object-oriented programming.
+A desktop Pokedex built with JavaFX and PokeAPI for learning Java and object-oriented programming.
+
+## Features
+
+- Browse the original 151 Pokémon.
+- Search loaded Pokémon by name or ID.
+- View the selected Pokémon's ID and name.
+- Load data in the background while keeping the interface responsive.
+- Reload data and retry failed requests.
 
 ## Requirements
 

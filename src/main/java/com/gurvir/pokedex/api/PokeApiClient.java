@@ -18,7 +18,7 @@ public class PokeApiClient {
 
     public String fetchPokemonListJson() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://pokeapi.co/api/v2/pokemon?limit=3"))
+            .uri(URI.create("https://pokeapi.co/api/v2/pokemon?limit=151"))
             .timeout(Duration.ofSeconds(15))
             .GET()
             .build();

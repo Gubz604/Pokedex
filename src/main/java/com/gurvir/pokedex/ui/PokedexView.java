@@ -25,6 +25,8 @@ public class PokedexView {
         Label detailLabel = new Label("Select a Pokemon");
         FilteredList<Pokemon> filteredPokemon = new FilteredList<>(pokemon);
         ListView<Pokemon> pokemonList = new ListView<>(filteredPokemon);
+        
+        pokemonList.setCellFactory(listView -> new PokemonListCell());
 
         pokemonList.getSelectionModel()
             .selectedItemProperty()
