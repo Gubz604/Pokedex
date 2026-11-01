@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 
 public class PokedexView {
     private final BorderPane root;
+    private final Label statusLabel;
 
     public PokedexView(final ObservableList<Pokemon> pokemon) {
         Label detailLabel = new Label("Select a Pokemon");
@@ -25,13 +26,20 @@ public class PokedexView {
                 }
             });
 
+        this.statusLabel = new Label("Ready");
+
         pokemonList.setPrefWidth(220);
         this.root = new BorderPane();
+        this.root.setTop(statusLabel);
         this.root.setLeft(pokemonList);
         this.root.setCenter(detailLabel);
     }
 
     public Parent getRoot() {
         return root;
+    }
+
+    public void setStatus(final String message) {
+        statusLabel.setText(message);
     }
 }
