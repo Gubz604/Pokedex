@@ -25,6 +25,19 @@ public class Main extends Application {
 
         PokedexView view = new PokedexView(pokemon);
 
+        Scene scene = new Scene(view.getRoot(), 800, 600);
+        stage.setTitle("Java Pokedex");
+        stage.setScene(scene);
+        stage.show();
+
+        view.setOnReload(() -> loadPokemon(repository, pokemon, view));
+        loadPokemon(repository, pokemon, view);
+    }
+    public static void main(final String[] args) {
+        launch(args);
+    }
+
+    private void loadPokemon(PokemonRepository repository, ObservableList<Pokemon> pokemon, PokedexView view) {
         Task<List<Pokemon>> loadTask = new Task<>() {
             @Override
             protected List<Pokemon> call() throws Exception {
@@ -36,23 +49,18 @@ public class Main extends Application {
             pokemon.setAll(loadTask.getValue());
 
             view.setStatus("Loaded " + pokemon.size() + " Pokemon");
+            view.setLoading(false);
         });
         loadTask.setOnFailed(event -> {
-            view.setStatus("Could not load Pokemon. Please try again later.");
+            view.setStatus("Could not load Pokemon. Click Reload to try again.");
+            view.setLoading(false);
             loadTask.getException().printStackTrace();
         });
+        view.setLoading(true);
         view.setStatus("Loading Pokemon...");
-
-        Scene scene = new Scene(view.getRoot(), 800, 600);
-        stage.setTitle("Java Pokedex");
-        stage.setScene(scene);
-        stage.show();
 
         Thread worker = new Thread(loadTask, "pokemon-loader");
         worker.setDaemon(true);
         worker.start();
-    }
-    public static void main(final String[] args) {
-        launch(args);
     }
 }
